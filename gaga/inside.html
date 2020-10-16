@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+  </head>
+  <body>
+    <img id="myimage" src="https://hashtag-labs.com/banner.jpeg" width="300" height="250" />
+    <!-- <img id="myimage" src="./gaga.png" width="300" height="250" /> -->
+    <script type="text/javascript">
+const IMAGE_ID = 'myimage';
+const VIEWABLE_MESSAGE = 'viewable';
+const DOM_CONTENT_LOADED_EVENT = 'DOMContentLoaded';
+const NON_VIEWABLE_MESSAGE = 'non-viewable';
+const CHECK_TIME = 2000;
+
+
+function isInViewport(element) {
+  const rectangle = element.getBoundingClientRect();
+  const { clientHeight, clientWidth } = document.documentElement;
+
+  const isAfterStart = rectangle.top >= 0 && rectangle.left >= 0;
+  const isBeforeBottomEnd = rectangle.bottom <= (window.innerHeight || clientHeight);
+  const isBeforeRightEnd = rectangle.right <= (window.innerWidth || clientWidth)
+  const isInside = isAfterStart && isBeforeBottomEnd && isBeforeRightEnd;
+
+  return isInside;
+}
+
+function check(element, time) {
+  setInterval(() => {
+    const isInside = isInViewport(element);
+    const messageToLog = isInside ? VIEWABLE_MESSAGE : NON_VIEWABLE_MESSAGE;
+    console.log(messageToLog);
+  }, time);
+}
+
+window.addEventListener(DOM_CONTENT_LOADED_EVENT, (event) => {
+  const element = document.getElementById(IMAGE_ID);
+  check(element, CHECK_TIME);
+});
+
+    </script>
+  </body>
+</html>
+
