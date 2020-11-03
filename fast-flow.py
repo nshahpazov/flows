@@ -35,7 +35,6 @@ def bfs(s, t, parent):
 
 def f(source, sink):
   parent = [-1] * NROW
-
   max_flow = 0
 
   while bfs(source, sink, parent):
