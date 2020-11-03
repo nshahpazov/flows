@@ -31,7 +31,7 @@ def bfs(s, t, parent):
         visited[i] = True
         parent[i] = u
 
-  return True if visited[t] else False
+  return visited[t]
 
 def f(source, sink):
   parent = [-1] * NROW
@@ -58,4 +58,4 @@ def f(source, sink):
   return max_flow
 
 result = max_flow(graph, 0, n - 1)
-print res
+print(result)
